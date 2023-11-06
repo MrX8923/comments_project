@@ -7,7 +7,6 @@ def not_ok_comment(comment: str):
     stop_list = ('кот', 'котик')
     for word in stop_list:
         if word in comment.lower().split():
-            print(1)
             return True
     return False
 
