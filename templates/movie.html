@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie</title>
+</head>
+<body>
+    <h1>MOVIE</h1>
+    <iframe src="{{ movie.link }}" frameborder="3" width="640" height="350"></iframe>
+    <hr>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="m-1 {% if field.errors %} errors {% endif %}">{{ field.label_tag }}</div>
+            <div class="m-1 {% if field.errors %} errors {% endif %}">{{ field.errors }}</div>
+            <div class="m-1 {% if field.errors %} errors {% endif %}">{{ field }}</div>
+        {% endfor %}
+        <button class="see-button" type="submit">Отправить комментарий</button>
+    </form>
+    {% if cat_filter %}
+        <h1>Здесь нельзя писать про котов!</h1>
+    {% else %}
+        {% for comment in comments %}
+            {{ comment.author }}
+            {{ comment.date_published }}
+            {{ comment.body }}
+        {% endfor %}
+    {% endif %}
+
+
+</body>
+</html>
