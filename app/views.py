@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import *
 
 
-def not_ok_comment(comment: str):
+def not_ok_comment(comment: str) -> bool:
     stop_list = ('кот', 'котик')
     for word in stop_list:
         if word in comment.lower().split():
@@ -10,7 +10,7 @@ def not_ok_comment(comment: str):
     return False
 
 
-def movie(request, movie_id: int):
+def movie(request, movie_id: int) -> render:
     form = NewCommentForm()
     all_comments = Comment.objects.filter(active=True, movie_id=movie_id)
     movie_to_page = Movie.objects.get(id=movie_id)
